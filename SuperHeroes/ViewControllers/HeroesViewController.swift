@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HeroesViewController.swift
 //  SuperHeroes
 //
 //  Created by Nikolai Maksimov on 19.09.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HeroesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
