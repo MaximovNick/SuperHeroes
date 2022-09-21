@@ -29,14 +29,12 @@ class HeroesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "FIND YOUR HERO"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.red]
-        
         collectionView.backgroundColor = .black
         view.backgroundColor = .black
         view.addSubview(collectionView)
         setCollectionViewDelegates()
         setConstraints()
+        setupNavigationBar()
         fetchHeroes()
     }
     
@@ -70,9 +68,21 @@ extension HeroesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HeroesViewCell else { return UICollectionViewCell()}
+        
         let hero = heroes[indexPath.row]
         cell.configure(with: hero)
         return cell
+    }
+    
+    private func setupNavigationBar() {
+        title = "FIND YOUR HERO"
+      
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = .black
+        navBarAppearance.titleTextAttributes = [.font: UIFont(name: "Chalkduster", size: 20) ?? "" , .foregroundColor: UIColor.red]
+
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
     }
 }
 
@@ -100,7 +110,6 @@ extension HeroesViewController: UICollectionViewDelegateFlowLayout {
         20
     }
 }
-
 
 // MARK: - setConstraints
 extension HeroesViewController {
