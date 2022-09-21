@@ -28,6 +28,15 @@ class HeroesViewCell: UICollectionViewCell {
         return label
     }()
     
+    private var activityIndicator: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .medium)
+        activity.color = .white
+        activity.startAnimating()
+        activity.hidesWhenStopped = true
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        return activity
+    }()
+    
     private var imageURL: URL? {
         didSet {
             heroImageView.image = nil
@@ -38,6 +47,7 @@ class HeroesViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        heroImageView.addSubview(activityIndicator)
         addSubview(heroImageView)
         addSubview(mainLabel)
         setConstraints()
@@ -59,6 +69,7 @@ class HeroesViewCell: UICollectionViewCell {
             case .success(let image):
                 if imageURL == self.imageURL {
                     self.heroImageView.image = image
+                    self.activityIndicator.stopAnimating()
                 }
             case .failure(let error):
                 print(error)
@@ -105,6 +116,11 @@ extension HeroesViewCell {
             mainLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             mainLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             mainLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: heroImageView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: heroImageView.centerYAnchor)
         ])
     }
 }
