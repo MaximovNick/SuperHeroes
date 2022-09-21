@@ -12,6 +12,10 @@
 		AD2BE8A928D8C73D00BB1301 /* HeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8A828D8C73D00BB1301 /* HeroesViewController.swift */; };
 		AD2BE8AE28D8C73D00BB1301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2BE8AD28D8C73D00BB1301 /* Assets.xcassets */; };
 		AD2BE8B128D8C73D00BB1301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2BE8AF28D8C73D00BB1301 /* LaunchScreen.storyboard */; };
+		AD2BE8C128D8CD2400BB1301 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C028D8CD2400BB1301 /* Hero.swift */; };
+		AD2BE8C328D8CE4B00BB1301 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C228D8CE4B00BB1301 /* NetworkManager.swift */; };
+		AD2BE8C528D8E27C00BB1301 /* HeroesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C428D8E27C00BB1301 /* HeroesViewCell.swift */; };
+		AD2BE8C728DA30E100BB1301 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C628DA30E100BB1301 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		AD2BE8AD28D8C73D00BB1301 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2BE8B028D8C73D00BB1301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2BE8B228D8C73D00BB1301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD2BE8C028D8CD2400BB1301 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		AD2BE8C228D8CE4B00BB1301 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AD2BE8C428D8E27C00BB1301 /* HeroesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewCell.swift; sourceTree = "<group>"; };
+		AD2BE8C628DA30E100BB1301 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 		AD2BE8BB28D8C89100BB1301 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AD2BE8C028D8CD2400BB1301 /* Hero.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -101,6 +110,7 @@
 		AD2BE8BC28D8C8C200BB1301 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AD2BE8C428D8E27C00BB1301 /* HeroesViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,6 +118,8 @@
 		AD2BE8BD28D8C8D700BB1301 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AD2BE8C228D8CE4B00BB1301 /* NetworkManager.swift */,
+				AD2BE8C628DA30E100BB1301 /* ImageCache.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -184,7 +196,11 @@
 			files = (
 				AD2BE8A928D8C73D00BB1301 /* HeroesViewController.swift in Sources */,
 				AD2BE8A528D8C73D00BB1301 /* AppDelegate.swift in Sources */,
+				AD2BE8C328D8CE4B00BB1301 /* NetworkManager.swift in Sources */,
 				AD2BE8A728D8C73D00BB1301 /* SceneDelegate.swift in Sources */,
+				AD2BE8C528D8E27C00BB1301 /* HeroesViewCell.swift in Sources */,
+				AD2BE8C728DA30E100BB1301 /* ImageCache.swift in Sources */,
+				AD2BE8C128D8CD2400BB1301 /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
