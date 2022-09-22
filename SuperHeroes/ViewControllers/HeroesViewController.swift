@@ -8,13 +8,19 @@
 import UIKit
 
 class HeroesViewController: UIViewController {
-    
+  
     // MARK: - Private properties
-    private var heroes: [Hero] = [] {
-        didSet {
-            collectionView.reloadData()
-            
-        }
+    private var hero: [Hero]?
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filteredHeroes: [Hero] = []
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
     }
     
     private let collectionView: UICollectionView = {
@@ -35,6 +41,7 @@ class HeroesViewController: UIViewController {
         setCollectionViewDelegates()
         setConstraints()
         setupNavigationBar()
+        setupSearchController()
         fetchHeroes()
     }
     
@@ -49,13 +56,23 @@ class HeroesViewController: UIViewController {
     private func fetchHeroes() {
         NetworkManager.shared.fetchData { result in
             switch result {
-            case .success(let superheroes):
-                self.heroes = superheroes
+            case .success(let hero):
+                self.hero = hero
                 self.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.searchTextField.tintColor = UIColor.white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 }
 
@@ -63,14 +80,15 @@ class HeroesViewController: UIViewController {
 extension HeroesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        heroes.count
+        isFiltering ? filteredHeroes.count : hero?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HeroesViewCell else { return UICollectionViewCell()}
         
-        let hero = heroes[indexPath.row]
-        cell.configure(with: hero)
+        let hero = isFiltering ? filteredHeroes[indexPath.row] : hero?[indexPath.row]
+        
+        cell.configure(with: hero!)
         return cell
     }
     
@@ -108,6 +126,23 @@ extension HeroesViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         20
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension HeroesViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentSearchText(searchController.searchBar.text!)
+    }
+
+    private func filterContentSearchText(_ searchText: String) {
+        
+        filteredHeroes = hero?.filter { hero in
+            hero.name.lowercased().contains(searchText.lowercased())
+        } ?? []
+        
+        collectionView.reloadData()
     }
 }
 
