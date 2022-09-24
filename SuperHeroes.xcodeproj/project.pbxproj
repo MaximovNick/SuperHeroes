@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		AD2BE8A528D8C73D00BB1301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8A428D8C73D00BB1301 /* AppDelegate.swift */; };
 		AD2BE8A728D8C73D00BB1301 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8A628D8C73D00BB1301 /* SceneDelegate.swift */; };
-		AD2BE8A928D8C73D00BB1301 /* HeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8A828D8C73D00BB1301 /* HeroesViewController.swift */; };
+		AD2BE8A928D8C73D00BB1301 /* HeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8A828D8C73D00BB1301 /* HeroViewController.swift */; };
 		AD2BE8AE28D8C73D00BB1301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2BE8AD28D8C73D00BB1301 /* Assets.xcassets */; };
 		AD2BE8B128D8C73D00BB1301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2BE8AF28D8C73D00BB1301 /* LaunchScreen.storyboard */; };
 		AD2BE8C128D8CD2400BB1301 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C028D8CD2400BB1301 /* Hero.swift */; };
 		AD2BE8C328D8CE4B00BB1301 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C228D8CE4B00BB1301 /* NetworkManager.swift */; };
-		AD2BE8C528D8E27C00BB1301 /* HeroesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C428D8E27C00BB1301 /* HeroesViewCell.swift */; };
+		AD2BE8C528D8E27C00BB1301 /* HeroViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C428D8E27C00BB1301 /* HeroViewCell.swift */; };
 		AD2BE8C728DA30E100BB1301 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2BE8C628DA30E100BB1301 /* ImageCache.swift */; };
 		AD52A00D28DDC63800D5EE15 /* HeroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD52A00C28DDC63800D5EE15 /* HeroViewModel.swift */; };
 		AD52A00F28DE153200D5EE15 /* HeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD52A00E28DE153200D5EE15 /* HeroCellViewModel.swift */; };
@@ -24,13 +24,13 @@
 		AD2BE8A128D8C73D00BB1301 /* SuperHeroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperHeroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD2BE8A428D8C73D00BB1301 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD2BE8A628D8C73D00BB1301 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AD2BE8A828D8C73D00BB1301 /* HeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewController.swift; sourceTree = "<group>"; };
+		AD2BE8A828D8C73D00BB1301 /* HeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroViewController.swift; sourceTree = "<group>"; };
 		AD2BE8AD28D8C73D00BB1301 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2BE8B028D8C73D00BB1301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2BE8B228D8C73D00BB1301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD2BE8C028D8CD2400BB1301 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		AD2BE8C228D8CE4B00BB1301 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		AD2BE8C428D8E27C00BB1301 /* HeroesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewCell.swift; sourceTree = "<group>"; };
+		AD2BE8C428D8E27C00BB1301 /* HeroViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroViewCell.swift; sourceTree = "<group>"; };
 		AD2BE8C628DA30E100BB1301 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		AD52A00C28DDC63800D5EE15 /* HeroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroViewModel.swift; sourceTree = "<group>"; };
 		AD52A00E28DE153200D5EE15 /* HeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModel.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		AD2BE8B828D8C82700BB1301 /* HeroList */ = {
 			isa = PBXGroup;
 			children = (
-				AD2BE8A828D8C73D00BB1301 /* HeroesViewController.swift */,
+				AD2BE8A828D8C73D00BB1301 /* HeroViewController.swift */,
 				AD52A00C28DDC63800D5EE15 /* HeroViewModel.swift */,
 				AD2BE8BC28D8C8C200BB1301 /* HeroCell */,
 			);
@@ -115,7 +115,7 @@
 		AD2BE8BC28D8C8C200BB1301 /* HeroCell */ = {
 			isa = PBXGroup;
 			children = (
-				AD2BE8C428D8E27C00BB1301 /* HeroesViewCell.swift */,
+				AD2BE8C428D8E27C00BB1301 /* HeroViewCell.swift */,
 				AD52A00E28DE153200D5EE15 /* HeroCellViewModel.swift */,
 			);
 			path = HeroCell;
@@ -201,11 +201,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD52A00D28DDC63800D5EE15 /* HeroViewModel.swift in Sources */,
-				AD2BE8A928D8C73D00BB1301 /* HeroesViewController.swift in Sources */,
+				AD2BE8A928D8C73D00BB1301 /* HeroViewController.swift in Sources */,
 				AD2BE8A528D8C73D00BB1301 /* AppDelegate.swift in Sources */,
 				AD2BE8C328D8CE4B00BB1301 /* NetworkManager.swift in Sources */,
 				AD2BE8A728D8C73D00BB1301 /* SceneDelegate.swift in Sources */,
-				AD2BE8C528D8E27C00BB1301 /* HeroesViewCell.swift in Sources */,
+				AD2BE8C528D8E27C00BB1301 /* HeroViewCell.swift in Sources */,
 				AD2BE8C728DA30E100BB1301 /* ImageCache.swift in Sources */,
 				AD2BE8C128D8CD2400BB1301 /* Hero.swift in Sources */,
 				AD52A00F28DE153200D5EE15 /* HeroCellViewModel.swift in Sources */,
