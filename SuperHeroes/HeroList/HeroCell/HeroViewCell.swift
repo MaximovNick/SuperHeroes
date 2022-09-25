@@ -11,11 +11,12 @@ class HeroViewCell: UICollectionViewCell {
     
     var heroCellViewModel: HeroCellViewModelProtocol! {
         didSet {
-        heroNameLabel.text = heroCellViewModel.heroNameLabel
+            heroNameLabel.text = heroCellViewModel.heroNameLabel
             DispatchQueue.global().async { [unowned self] in
                 guard let imageData = self.heroCellViewModel.heroImageData else { return }
                 DispatchQueue.main.async {
                     self.heroImageView.image = UIImage(data: imageData)
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -39,10 +40,20 @@ class HeroViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-        
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .large)
+        activity.color = .white
+        activity.startAnimating()
+        activity.hidesWhenStopped = true
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        return activity
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        heroImageView.addSubview(activityIndicator)
         addSubview(heroImageView)
         addSubview(heroNameLabel)
         setConstraints()
@@ -68,7 +79,12 @@ extension HeroViewCell {
             heroNameLabel.topAnchor.constraint(equalTo: heroImageView.bottomAnchor, constant: 0),
             heroNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             heroNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            heroNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            heroNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+        ])
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: heroImageView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: heroImageView.centerYAnchor)
         ])
     }
 }
