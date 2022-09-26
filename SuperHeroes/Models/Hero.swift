@@ -10,6 +10,7 @@ import Foundation
 // MARK: - WelcomeElement
 struct Hero: Codable {
     let name: String
+    let biography: Biography
     let powerstats: Powerstats
     let images: Images
 }
@@ -17,6 +18,14 @@ struct Hero: Codable {
 // MARK: - Images
 struct Images: Codable {
     let xs, sm, md, lg: String
+}
+
+// MARK: - Biography
+struct Biography: Codable {
+    let fullName, alterEgos: String
+    let aliases: [String]
+    let placeOfBirth, firstAppearance: String
+    let publisher: String?
 }
 
 // MARK: - Powerstats
