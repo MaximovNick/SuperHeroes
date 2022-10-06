@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - WelcomeElement
-struct Superhero: Codable {
+struct Hero: Codable {
     let id: Int
     let name, slug: String
     let powerstats: Powerstats
