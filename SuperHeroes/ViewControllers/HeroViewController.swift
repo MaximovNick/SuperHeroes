@@ -10,14 +10,7 @@ import UIKit
 class HeroViewController: UIViewController {
     
     // MARK: - Private properties
-    private var heroViewModel: HeroViewModelProtocol! {
-        didSet {
-            heroViewModel.fetchHero { [unowned self] in
-                self.collectionView.reloadData()
-                
-            }
-        }
-    }
+    private var heroes: [Hero] = []
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,16 +24,16 @@ class HeroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        heroViewModel = HeroViewModel()
         collectionView.backgroundColor = .black
-        view.backgroundColor = .black
         view.addSubview(collectionView)
-        setCollectionViewDelegates()
+        
         setConstraints()
+        setCollectionViewDelegates()
         setupNavigationBar()
+        fetchHeroes()
     }
     
-    // Collection View Delegates
+    // MARK: - Private Methods
     private func setCollectionViewDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -52,8 +45,20 @@ class HeroViewController: UIViewController {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = .black
-        navBarAppearance.titleTextAttributes = [.font: UIFont(name: "Chalkduster", size: 20) ?? "" , .foregroundColor: UIColor.red]
+        navBarAppearance.titleTextAttributes = [.font: UIFont(name: "Chalkduster", size: 20) ?? "", .foregroundColor: UIColor.red]
         navigationController?.navigationBar.standardAppearance = navBarAppearance
+    }
+    
+    private func fetchHeroes() {
+        NetworkManager.shared.fetchData { result in
+            switch result {
+            case .success(let heroes):
+                self.heroes = heroes
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -61,13 +66,16 @@ class HeroViewController: UIViewController {
 extension HeroViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        heroViewModel.numberOfRows()
+        heroes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HeroViewCell else { return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HeroViewCell else { return UICollectionViewCell() }
         
-        cell.heroCellViewModel = heroViewModel.getHeroCellViewModel(at: indexPath)
+        let hero = heroes[indexPath.row]
+        
+        cell.backgroundColor = .black
+        cell.configure(with: hero)
         
         return cell
     }
@@ -98,9 +106,8 @@ extension HeroViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - setConstraints
+// MARK: - Constraints
 extension HeroViewController {
-    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
