@@ -17,6 +17,17 @@ struct Hero: Codable {
     let work: Work
     let connections: Connections
     let images: Images
+    
+    var stats: String {
+                      """
+                      Intelligence: \(powerstats.intelligence)
+                      Strength: \(powerstats.strength)
+                      Speed: \(powerstats.speed)
+                      Durability: \(powerstats.durability)
+                      Power: \(powerstats.power)
+                      Combat: \(powerstats.combat)
+                      """
+    }
 }
 
 // MARK: - Appearance
@@ -61,8 +72,13 @@ struct Images: Codable {
 
 // MARK: - Powerstats
 struct Powerstats: Codable {
-    let intelligence, strength, speed, durability: Int
+    let intelligence: Int
+    let strength: Int
+    let speed: Int
+    let durability: Int
     let power, combat: Int
+    
+
 }
 
 // MARK: - Work
