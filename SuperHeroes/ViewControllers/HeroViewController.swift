@@ -79,6 +79,14 @@ extension HeroViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let hero = heroes[indexPath.row]
+        let powerStatsVC = AboutHeroViewController()
+
+        navigationController?.pushViewController(powerStatsVC, animated: true)
+        powerStatsVC.hero = hero 
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
