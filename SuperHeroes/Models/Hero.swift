@@ -17,17 +17,6 @@ struct Hero: Codable {
     let work: Work
     let connections: Connections
     let images: Images
-    
-    var stats: String {
-                      """
-                      Intelligence: \(powerstats.intelligence)
-                      Strength: \(powerstats.strength)
-                      Speed: \(powerstats.speed)
-                      Durability: \(powerstats.durability)
-                      Power: \(powerstats.power)
-                      Combat: \(powerstats.combat)
-                      """
-    }
 }
 
 // MARK: - Appearance
@@ -46,11 +35,22 @@ enum Gender: String, Codable {
 
 // MARK: - Biography
 struct Biography: Codable {
-    let fullName, alterEgos: String
-    let aliases: [String]
-    let placeOfBirth, firstAppearance: String
+    let fullName: String
+    let alterEgos: String
+    let placeOfBirth: String
+    let firstAppearance: String
     let publisher: String?
     let alignment: Alignment
+    
+    var biography: String {
+                          """
+                          Full name: \(fullName)
+                          Alter egos: \(alterEgos)
+                          Place of birth: \(placeOfBirth)
+                          First appearance: \(firstAppearance)
+                          Publisher: \(publisher ?? "")
+                          """
+    }
 }
 
 enum Alignment: String, Codable {
@@ -76,12 +76,23 @@ struct Powerstats: Codable {
     let strength: Int
     let speed: Int
     let durability: Int
-    let power, combat: Int
+    let power: Int
+    let combat: Int
     
-
+    var powerStats: String {
+                            """
+                            Intelligence: \(intelligence)
+                            Strength: \(strength)
+                            Speed: \(speed)
+                            Durability: \(durability)
+                            Power: \(power)
+                            Combat: \(combat)
+                            """
+    }
 }
 
 // MARK: - Work
 struct Work: Codable {
-    let occupation, base: String
+    let occupation: String
+    let base: String
 }
