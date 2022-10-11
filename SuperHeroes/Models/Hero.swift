@@ -23,8 +23,21 @@ struct Hero: Codable {
 struct Appearance: Codable {
     let gender: Gender
     let race: String?
-    let height, weight: [String]
-    let eyeColor, hairColor: String
+    let height: [String]
+    let weight: [String]
+    let eyeColor: String
+    let hairColor: String
+    
+    var appearance: String {
+                          """
+                          Gender: \(gender.rawValue)
+                          Race: \(race ?? "")
+                          Height: \(height.joined(separator: ", "))
+                          Weight: \(weight.joined(separator: ", "))
+                          EyeColor: \(eyeColor)
+                          HairColor: \(hairColor)
+                          """
+    }
 }
 
 enum Gender: String, Codable {
@@ -49,6 +62,7 @@ struct Biography: Codable {
                           Place of birth: \(placeOfBirth)
                           First appearance: \(firstAppearance)
                           Publisher: \(publisher ?? "")
+                          Alignment: \(alignment.rawValue)
                           """
     }
 }
@@ -62,7 +76,15 @@ enum Alignment: String, Codable {
 
 // MARK: - Connections
 struct Connections: Codable {
-    let groupAffiliation, relatives: String
+    let groupAffiliation: String
+    let relatives: String
+    
+    var connections: String {
+                            """
+                            GroupAffiliation: \(groupAffiliation)
+                            Relatives: \(relatives)
+                            """
+    }
 }
 
 // MARK: - Images
@@ -95,4 +117,11 @@ struct Powerstats: Codable {
 struct Work: Codable {
     let occupation: String
     let base: String
+    
+    var work: String {
+                    """
+                    Occupation: \(occupation)
+                    Base: \(base)
+                    """
+    }
 }
