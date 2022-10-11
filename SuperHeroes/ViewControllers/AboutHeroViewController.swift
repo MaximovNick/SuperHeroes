@@ -9,72 +9,75 @@ import UIKit
 
 class AboutHeroViewController: UIViewController {
     
-    var hero: Hero!
+    var hero: Hero! {
+        didSet {
+            biographyLabel.text = hero.biography.biography
+        }
+    }
     
-    private let heroImageView: UIImageView = {
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .black
+        scrollView.contentSize = contentSize
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let contentView = UIView()
+        contentView.frame.size = contentSize
+        return contentView
+    }()
+    
+    private var contentSize: CGSize {
+        CGSize(width: view.frame.width, height: view.frame.height + 100)
+    }
+    
+    private lazy var heroImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 10
-        image.contentMode = .scaleToFill
+        image.contentMode = .center
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    private var biographyButton: UIButton = {
-        var attributes = AttributeContainer()
-        attributes.font = UIFont.boldSystemFont(ofSize: 18)
-        
-        var buttonConfiguration = UIButton.Configuration.filled()
-        buttonConfiguration.attributedTitle = AttributedString("Biography", attributes:  attributes)
-        buttonConfiguration.baseBackgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
-        })
-        
+    private lazy var firstLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Biography"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private var appearanceButton: UIButton = {
-        var attributes = AttributeContainer()
-        attributes.font = UIFont.boldSystemFont(ofSize: 18)
-        
-        var buttonConfiguration = UIButton.Configuration.filled()
-        buttonConfiguration.attributedTitle = AttributedString("Appearance", attributes:  attributes)
-        buttonConfiguration.baseBackgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
-        })
-        
+    private lazy var biographyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.numberOfLines = 0
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
-    
-    private var powerStatsButton: UIButton = {
-        var attributes = AttributeContainer()
-        attributes.font = UIFont.boldSystemFont(ofSize: 18)
-        
-        var buttonConfiguration = UIButton.Configuration.filled()
-        buttonConfiguration.attributedTitle = AttributedString("Show power stats", attributes:  attributes)
-        buttonConfiguration.baseBackgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
-        return UIButton(configuration: buttonConfiguration, primaryAction: UIAction { _ in
-        })
-        
-    }()
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
         title = hero.name
-        
+        view.backgroundColor = .black
         setupSubviews()
         setConstraints()
         fetchImage(from: hero.images.md)
     }
     
     private func setupSubviews() {
+        
         view.addSubview(heroImageView)
-        view.addSubview(appearanceButton)
-        view.addSubview(biographyButton)
-        view.addSubview(powerStatsButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(firstLabel)
+        contentView.addSubview(biographyLabel)
     }
     
     private func fetchImage(from url: String) {
@@ -88,6 +91,10 @@ class AboutHeroViewController: UIViewController {
             }
         }
     }
+}
+
+// MARK: - Constraints
+extension AboutHeroViewController {
     
     private func setConstraints() {
         
@@ -95,34 +102,27 @@ class AboutHeroViewController: UIViewController {
             heroImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             heroImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             heroImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            heroImageView.heightAnchor.constraint(equalToConstant: 400),
+            heroImageView.heightAnchor.constraint(equalToConstant: 350),
         ])
-        
-        biographyButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            biographyButton.bottomAnchor.constraint(equalTo: appearanceButton.topAnchor, constant: -20),
-            biographyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            biographyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            biographyButton.heightAnchor.constraint(equalToConstant: 30),
+            scrollView.topAnchor.constraint(equalTo: heroImageView.bottomAnchor, constant: 5),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
-        
-        appearanceButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            appearanceButton.bottomAnchor.constraint(equalTo: powerStatsButton.topAnchor, constant: -20),
-            appearanceButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            appearanceButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            appearanceButton.heightAnchor.constraint(equalToConstant: 30),
+            firstLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            firstLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            firstLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
         ])
-        
-        powerStatsButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            powerStatsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            powerStatsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            powerStatsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            powerStatsButton.heightAnchor.constraint(equalToConstant: 30),
+            biographyLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 10),
+            biographyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            biographyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
         ])
+        
     }
 }
