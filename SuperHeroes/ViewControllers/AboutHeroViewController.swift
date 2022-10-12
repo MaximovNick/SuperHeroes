@@ -47,73 +47,43 @@ class AboutHeroViewController: UIViewController {
     }()
     
     private lazy var biographyTitleLabel: UILabel = {
-        createTitleLabel(title: "Biography", size: 18, color: .red)
+        createLabel(title: "Biography", size: 18, color: .red, textAlignment: .center)
     }()
     
     private lazy var biographyLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        createLabel(size: 14, color: .white, textAlignment: .left)
     }()
     
     private lazy var statsTitleLabel: UILabel = {
-        createTitleLabel(title: "Power Stats", size: 18, color: .red)
+        createLabel(title: "Power Stats", size: 18, color: .red, textAlignment: .center)
     }()
     
     private lazy var powerStatsLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        createLabel(size: 14, color: .white, textAlignment: .left)
     }()
     
     private lazy var appearanceTitleLabel: UILabel = {
-        createTitleLabel(title: "Appearance", size: 18, color: .red)
+        createLabel(title: "Appearance", size: 18, color: .red, textAlignment: .center)
     }()
     
     private lazy var appearanceLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        createLabel(title: "", size: 14, color: .white, textAlignment: .left)
     }()
     
     private lazy var workTitleLabel: UILabel = {
-        createTitleLabel(title: "Work", size: 18, color: .red)
+        createLabel(title: "Work", size: 18, color: .red, textAlignment: .center)
     }()
     
     private lazy var workLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        createLabel(size: 14, color: .white, textAlignment: .left)
     }()
     
     private lazy var connectionsTitleLabel: UILabel = {
-        createTitleLabel(title: "Connections", size: 18, color: .red)
+        createLabel(title: "Connections", size: 18, color: .red, textAlignment: .center)
     }()
     
     private lazy var connectionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        createLabel(size: 14, color: .white, textAlignment: .left)
     }()
     
     override func viewDidLoad() {
@@ -126,12 +96,13 @@ class AboutHeroViewController: UIViewController {
         fetchImage(from: hero.images.md)
     }
     
-    private func createTitleLabel(title: String, size: CGFloat, color: UIColor) -> UILabel {
+    private func createLabel(title: String? = nil, size: CGFloat, color: UIColor, textAlignment: NSTextAlignment) -> UILabel {
         let label = UILabel()
         label.text = title
         label.font = UIFont.boldSystemFont(ofSize: size)
         label.textColor = color
-        label.textAlignment = .center
+        label.textAlignment = textAlignment
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
