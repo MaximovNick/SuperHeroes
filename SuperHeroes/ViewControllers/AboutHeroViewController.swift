@@ -19,6 +19,7 @@ class AboutHeroViewController: UIViewController {
         }
     }
     
+    // MARK: - Private Properties
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .black
@@ -86,6 +87,7 @@ class AboutHeroViewController: UIViewController {
         createLabel(size: 14, color: .white, textAlignment: .left)
     }()
     
+    // MARK: - UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,6 +98,7 @@ class AboutHeroViewController: UIViewController {
         fetchImage(from: hero.images.md)
     }
     
+    // MARK: - Private Methods
     private func createLabel(title: String? = nil, size: CGFloat, color: UIColor, textAlignment: NSTextAlignment) -> UILabel {
         let label = UILabel()
         label.text = title
