@@ -43,6 +43,8 @@ class AboutHeroViewController: UIViewController {
         image.layer.cornerRadius = 10
         image.contentMode = .center
         image.clipsToBounds = true
+        image.layer.borderWidth = 1
+        image.layer.borderColor = UIColor.white.cgColor
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
