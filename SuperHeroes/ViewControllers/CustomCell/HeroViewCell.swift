@@ -25,6 +25,8 @@ class HeroViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
